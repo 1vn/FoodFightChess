@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
  *  Each piece determines all of its legal moves,  
  * all possible moves and bishop keeps track of  
  * its points 
- * @author Chanuk De Silva 
+ * @author Ivan Zhang 
  * 
  */
 public class Pawn extends Piece

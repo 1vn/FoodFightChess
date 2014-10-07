@@ -7,7 +7,7 @@ import java.util.*;
  *  Each piece determines all of its legal moves, 
  * all possible moves and bishop keeps track of 
  * its points
- * @author Ivan Zhang and Chaunk De Silva
+ * @author Ivan Zhang
  */
 public class Queen extends Piece
 {
@@ -115,7 +115,7 @@ public class Queen extends Piece
 	
 	 /**
      * Checks all possible moves for this piece at the moment
-     * @author Chanuk De Silva
+     * @author Ivan Zhang
      * @return the possible moves that can be made by this piece
      */
 	public ArrayList<Move> allPossibleMoves()

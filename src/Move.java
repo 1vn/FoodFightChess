@@ -1,6 +1,6 @@
 /**
  * A move object to keep track of moves
- * @author Ivan Zhang and Chanuk De Siva
+ * @author Ivan Zhang
  *
  */
 public class Move 

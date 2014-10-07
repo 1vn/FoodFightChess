@@ -944,7 +944,7 @@ public class ChessGame extends JFrame implements ActionListener {
 	/**
 	 * This method is called by Java when a menu option is chosen
 	 * 
-	 * @author Ivan Zhang and Chanuk De Silve(For the AI part)
+	 * @author Ivan Zhang
 	 * @param event
 	 *            The event that triggered this method.
 	 */
