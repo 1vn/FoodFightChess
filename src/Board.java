@@ -10,7 +10,9 @@ public class Board {
 	
 	private static final int NO_OF_ROWS = 10;
 	private static final int NO_OF_COLUMNS = 10;
-	private static final Board INSTANCE = new Board(); // Board instance
+	private static final int DONALD = 0; 
+	private static final int WOK = 1;
+	private static Board INSTANCE = null; // Board instance
 	private static Piece[][] coord; // Coordinate map of the pieces on the board
 
 	private Board() {
@@ -23,6 +25,8 @@ public class Board {
 	 * @return the instance of the board
 	 */
 	public static Board getInstance() {
+		if(INSTANCE == null)
+			INSTANCE = new Board();
 		return INSTANCE;
 	}
 
