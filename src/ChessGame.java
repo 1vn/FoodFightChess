@@ -179,6 +179,8 @@ public class ChessGame extends JFrame implements ActionListener {
 		// Board state is updated by moveOnBoard method
 		Piece.setBoard(board);
 		
+		Board.getInstance();
+		
 		//Initialize contentPane with null layout
 		contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
