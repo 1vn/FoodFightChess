@@ -16,9 +16,24 @@ public class Board {
 	private static Piece[][] coord; // Coordinate map of the pieces on the board
 
 	private Board() {
-		coord = new Piece[10][10];
+		coord = new Piece[NO_OF_ROWS][NO_OF_COLUMNS];
 	}
 
+	public static int length() 
+	{
+		return NO_OF_ROWS;
+	}
+	
+	public static Piece[][] getBoard()
+	{
+		return coord;
+	}
+	
+	public static int width() 
+	{
+		return NO_OF_LENGTH;
+	}
+	
 	/**
 	 * Return the only instance of board
 	 * 
@@ -39,10 +54,15 @@ public class Board {
 	 *            the column of the piece
 	 * @return the piece at the coordinate
 	 */
-	public static Piece getPiece(int row, int col) {
+	public static Piece get(int row, int col) {
 		return coord[row][col];
 	}
 
+	public static void set(int row , int col, Piece piece)
+	{
+		coord[row][col] = piece; 
+	}
+	
 	/**
 	 * Set each piece on the board according to the standard chess setup
 	 * Alternate King/Queen position depending orientation of the board Also as
