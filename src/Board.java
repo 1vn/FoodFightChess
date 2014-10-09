@@ -31,7 +31,7 @@ public class Board {
 	
 	public static int width() 
 	{
-		return NO_OF_LENGTH;
+		return NO_OF_COLUMNS;
 	}
 	
 	/**
