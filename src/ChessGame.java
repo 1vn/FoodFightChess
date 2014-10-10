@@ -493,16 +493,12 @@ public class ChessGame extends JFrame implements ActionListener {
 		//Makes sure the computer player goes first if single player mode was selected and
 		//the player chose to fight for Wok
 		if (singlePlayer && playerColour == WOK) {
-			computerPlayer.setBoard(board);
 			computerMove = computerPlayer.bestMove();
 			System.out.println("The computer wants to do " + computerMove);
 			if(computerMove != null && board[computerMove.fromRow][computerMove.fromCol] != null )
 			humanHand(board[computerMove.fromRow][computerMove.fromCol], computerMove);
 		}
 		
-		//Synchronize the board
-				if (singlePlayer)
-					computerPlayer.setBoard(board);
 
 	}
 
@@ -1639,8 +1635,6 @@ public class ChessGame extends JFrame implements ActionListener {
 						robotHand(computerMove);
 						checkAllMoves();
 					}
-					if(singlePlayer)
-					computerPlayer.setBoard(board);
 					
 					isGameOver();
 					invalidMove = false;
