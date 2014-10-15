@@ -6,7 +6,7 @@ import java.util.*;
  *  Each piece determines all of its legal moves, 
  * all possible moves and bishop keeps track of 
  * its points
- * @author Ivan Zhang
+ * @author Chanuk De Silva and Ivan Zhang
  *
  */
 public class Knight extends Piece {
@@ -119,7 +119,7 @@ public class Knight extends Piece {
 	}
 
 	/**
-	 * @author Ivan Zhang
+	 * @author Chanuk De Silva
 	 * Determines the list of possible moves by this piece
 	 * @return the list of possible moves by this piece
 	 */

@@ -179,9 +179,6 @@ public class ChessGame extends JFrame implements ActionListener {
 		// Board state is updated by moveOnBoard method
 		Piece.setBoard(board);
 		
-		//Initialize the board
-		Board.getInstance();
-		
 		//Initialize contentPane with null layout
 		contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
@@ -493,12 +490,16 @@ public class ChessGame extends JFrame implements ActionListener {
 		//Makes sure the computer player goes first if single player mode was selected and
 		//the player chose to fight for Wok
 		if (singlePlayer && playerColour == WOK) {
+			computerPlayer.setBoard(board);
 			computerMove = computerPlayer.bestMove();
 			System.out.println("The computer wants to do " + computerMove);
 			if(computerMove != null && board[computerMove.fromRow][computerMove.fromCol] != null )
 			humanHand(board[computerMove.fromRow][computerMove.fromCol], computerMove);
 		}
 		
+		//Synchronize the board
+				if (singlePlayer)
+					computerPlayer.setBoard(board);
 
 	}
 
@@ -550,6 +551,8 @@ public class ChessGame extends JFrame implements ActionListener {
 		// Place the pawns
 		for (int col = 1; col <= NO_OF_COLUMNS; col++) {
 			board[7][col] = new Pawn(7, col, playerColour);
+			board[7][col].allPossibleMoves();
+
 		}
 		// Place the Rooks
 		for (int rooks = 0; rooks < 2; rooks++) {
@@ -560,23 +563,32 @@ public class ChessGame extends JFrame implements ActionListener {
 		for (int knights = 0; knights < 2; knights++) {
 			board[8][7 - 5 * knights] = new Knight(8, 7 - 5 * knights,
 					playerColour);
+			board[8][7 - 5 * knights].allPossibleMoves();
+
 		}
 		// Place the Bishops
 		for (int bishops = 0; bishops < 2; bishops++) {
 			board[8][6 - 3 * bishops] = new Bishop(8, 6 - 3 * bishops,
 					playerColour);
+			board[8][6 - 3 * bishops].allPossibleMoves();
+
 		}
 		if (playerColour == DONALD) {
 			// Place the King and Queen
 			for (int royalty = 0; royalty < 2; royalty++) {
 				board[8][4] = new Queen(8, 4, playerColour);
 				board[8][5] = new King(8, 5, playerColour);
+				board[8][4].allPossibleMoves();
+				board[8][5].allPossibleMoves();
+
 			}
 		} else
 			// Place the King and Queen
 			for (int royalty = 0; royalty < 2; royalty++) {
 				board[8][5] = new Queen(8, 5, playerColour);
 				board[8][4] = new King(8, 4, playerColour);
+				board[8][4].allPossibleMoves();
+				board[8][5].allPossibleMoves();
 
 			}
 
@@ -584,36 +596,45 @@ public class ChessGame extends JFrame implements ActionListener {
 		// Place the pawns
 		for (int col = 1; col <= NO_OF_COLUMNS; col++) {
 			board[2][col] = new Pawn(2, col, 1 - playerColour);
+			board[2][col].allPossibleMoves();
 
 		}
 		// Place the Rooks
 		for (int rooks = 0; rooks < 2; rooks++) {
 			board[1][8 - 7 * rooks] = new Rook(1, 8 - 7 * rooks,
 					1 - playerColour);
+			board[1][8 - 7 * rooks].allPossibleMoves();
 
 		}
 		// Place the Knights
 		for (int knights = 0; knights < 2; knights++) {
 			board[1][7 - 5 * knights] = new Knight(1, 7 - 5 * knights,
 					1 - playerColour);
+			board[1][7 - 5 * knights].allPossibleMoves();
 
 		}
 		// Place the Bishops
 		for (int bishops = 0; bishops < 2; bishops++) {
 			board[1][6 - 3 * bishops] = new Bishop(1, 6 - 3 * bishops,
 					1 - playerColour);
+			board[1][6 - 3 * bishops].allPossibleMoves();
 		}
 		if (playerColour == DONALD) {
 			// Place the King and Queen if player chose McDonald's (white)
 			for (int royalty = 0; royalty < 2; royalty++) {
 				board[1][4] = new Queen(1, 4, 1 - playerColour);
 				board[1][5] = new King(1, 5, 1 - playerColour);
+				board[1][4].allPossibleMoves();
+				board[1][5].allPossibleMoves();
+
 			}
 		} else
 			// Place the King and Queen if player chose Wok's (black)
 			for (int royalty = 0; royalty < 2; royalty++) {
 				board[1][5] = new Queen(1, 5, 1 - playerColour);
 				board[1][4] = new King(1, 4, 1 - playerColour);
+				board[1][4].allPossibleMoves();
+				board[1][5].allPossibleMoves();
 
 			}
 
@@ -923,7 +944,7 @@ public class ChessGame extends JFrame implements ActionListener {
 	/**
 	 * This method is called by Java when a menu option is chosen
 	 * 
-	 * @author Ivan Zhang
+	 * @author Ivan Zhang and Chanuk De Silve(For the AI part)
 	 * @param event
 	 *            The event that triggered this method.
 	 */
@@ -1615,6 +1636,8 @@ public class ChessGame extends JFrame implements ActionListener {
 						robotHand(computerMove);
 						checkAllMoves();
 					}
+					if(singlePlayer)
+					computerPlayer.setBoard(board);
 					
 					isGameOver();
 					invalidMove = false;

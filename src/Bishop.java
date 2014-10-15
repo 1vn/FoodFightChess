@@ -8,7 +8,7 @@ import java.util.*;
  * Each piece determines all of its legal moves, 
  * all possible moves and bishop keeps track of 
  * its points
- * @author Ivan Zhang
+ * @author Chanuk and Ivan
  *
  */
 public class Bishop extends Piece

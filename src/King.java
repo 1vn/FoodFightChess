@@ -6,7 +6,7 @@ import java.util.*;
 
 /** The king class extends the piece class
  * This class creates a king piece for a chess game
- * @author Ivan Zhang
+ * @author Chanuk De Silva and Ivan Zhang
  *
  */
 public class King extends Piece
@@ -109,7 +109,7 @@ public class King extends Piece
     
     /**
      * Checks all possible moves for this piece at the moment
-     * @author Ivan Zhang
+     * @author Chanuk De Silva
      * @return the possible moves that can be made by this piece
      */
     public ArrayList<Move> allPossibleMoves()

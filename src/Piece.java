@@ -15,7 +15,7 @@ import java.util.*;
  * Each piece will be able to move through the board, look for checks and castle
  * through this clasas.
  * 
- * Ivan Zhang
+ * @author Chanuk & Ivan
  * 
  */
 public abstract class Piece extends Rectangle {
@@ -75,7 +75,7 @@ public abstract class Piece extends Rectangle {
 	/**
 	 * Finds if a castle is possible
 	 * 
-	 * @author Ivan Zhang
+	 * @author Chanuk
 	 * 
 	 */
 	public boolean isCastlePossible(int toRow, int toCol) {
@@ -193,7 +193,7 @@ public abstract class Piece extends Rectangle {
 	 * Checks if the king is checked Since a King cannot check another king,
 	 * this always returns false
 	 * 
-	 * @author Ivan Zhang
+	 * @author Chanuk De Silva
 	 * @param board
 	 *            the board containing all pieces
 	 * @param playerColour

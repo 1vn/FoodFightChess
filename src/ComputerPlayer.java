@@ -12,6 +12,7 @@ import java.util.Scanner;
 	public class ComputerPlayer
 	{
 	    protected int colour;
+	    protected Piece [][] board;
 	    protected ArrayList <Move> allComputerMoves;
 	    protected ArrayList <Move> allUserMoves;
 	    protected Move bestMove;
@@ -28,7 +29,19 @@ import java.util.Scanner;
 
 		}
 	    
-	            
+
+	      
+	    /**
+	     * Sync the board of the game with the Computer  
+	     * @param board
+	     */
+	    public void setBoard (Piece [][] board)
+	    {
+	        this.board = board;
+	    }
+	      
+	    
+	      
 	    /** This method finds the best move for the AI and moves it
 	     *  runs openings if there are still moves in the openings
 	     */
@@ -69,10 +82,10 @@ import java.util.Scanner;
 		public ArrayList<Move> allMoves(int colour) {
 			
 		ArrayList<Move> allMoves = new ArrayList<Move>();
-			for (int row = 1; row < Board.length() - 1; row++)
-				for (int col = 1; col < Board.width() - 1; col++)
-					if (Board.get(row,col) != null && Board.get(row,col).colour == colour) {
-						ArrayList<Move> possibleMoves = Board.get(row, col).allPossibleMoves();
+			for (int row = 1; row < board.length - 1; row++)
+				for (int col = 1; col < board[0].length - 1; col++)
+					if (board[row][col] != null && board[row][col].colour == colour) {
+						ArrayList<Move> possibleMoves= board[row][col].allPossibleMoves();
 						for(Move move:possibleMoves)
 						{
 							if(move.enPassant)
@@ -98,15 +111,15 @@ import java.util.Scanner;
 			System.out.println(thisLevelComputerMoves);
 			for(Move move: thisLevelComputerMoves)
 			{
-				Piece originalPos = Board.get(move.fromRow, move.fromCol);
-				Piece pieceAtLocation = Board.get(move.toRow, move.toCol);
-				Board.set(move.toRow, move.toCol, originalPos); 
-				Board.get(move.fromRow, move.fromCol).moveOnBoard(move);
-				Board.set(move.fromRow, move.fromCol, null); 
+				Piece originalPos = board[move.fromRow][move.fromCol];
+				Piece pieceAtLocation = board[move.toRow][move.toCol];
+				board[move.toRow][move.toCol]= originalPos; 
+				board[move.fromRow][move.fromCol].moveOnBoard(move);
+				board[move.fromRow][move.fromCol]= null; 
 				int score = (mini(-1000, 1000, depth-1));
-				Board.set(move.toRow, move.toCol, pieceAtLocation);
+				board[move.toRow][move.toCol]=pieceAtLocation;
 				originalPos.moveOnBoard(new Move(move.toRow, move.toCol, move.fromRow, move.fromCol));
-				Board.set(move.fromRow, move.fromCol, originalPos); 
+				board[move.fromRow][move.fromCol]= originalPos; 
 				if(score > max)
 				{
 					
@@ -138,15 +151,15 @@ import java.util.Scanner;
 			{
 				
 				
-				Piece originalPos = Board.get(move.fromRow, move.fromCol);
-				Piece pieceAtLocation = Board.get(move.toRow, move.toCol);
-				Board.set(move.toRow, move.toCol, originalPos); 
-				Board.get(move.fromRow, move.fromCol).moveOnBoard(move);
-				Board.set(move.fromRow, move.fromCol, null); 
+				Piece originalPos = board[move.fromRow][move.fromCol];
+				Piece pieceAtLocation = board[move.toRow][move.toCol];
+				board[move.toRow][move.toCol]= originalPos; 
+				board[move.fromRow][move.fromCol].moveOnBoard(move);
+				board[move.fromRow][move.fromCol]= null; 
 				int score = (mini(alpha, beta, depth-1));
-				Board.set(move.toRow, move.toCol, pieceAtLocation);
+				board[move.toRow][move.toCol]=pieceAtLocation;
 				originalPos.moveOnBoard(new Move(move.toRow, move.toCol, move.fromRow, move.fromCol));
-				Board.set(move.fromRow, move.fromCol, originalPos); 
+				board[move.fromRow][move.fromCol]= originalPos; 
 				if(score >= beta)
 				{
 					return beta; //Eliminate fail trees
@@ -179,16 +192,16 @@ import java.util.Scanner;
 			ArrayList<Move> playerMoves = allMoves(1-colour);
 			for(Move move: playerMoves)
 			{
-				Piece originalPos = Board.get(move.fromRow, move.fromCol);
-				Piece pieceAtLocation = Board.get(move.toRow, move.toCol);
-				Board.set(move.toRow, move.toCol, originalPos); 
-				Board.get(move.fromRow, move.fromCol).moveOnBoard(move);
-				Board.set(move.fromRow, move.fromCol, null); 
+				Piece originalPos = board[move.fromRow][move.fromCol];
+				Piece pieceAtLocation = board[move.toRow][move.toCol];
+				board[move.toRow][move.toCol]= originalPos; 
+				board[move.fromRow][move.fromCol].moveOnBoard(move);
+				board[move.fromRow][move.fromCol]= null; 
 				ChessGame.currentTurn = 1-ChessGame.currentTurn;
 				int score = (maxi(alpha, beta, depth-1));
-				Board.set(move.toRow, move.toCol, pieceAtLocation);
+				board[move.toRow][move.toCol]=pieceAtLocation;
 				originalPos.moveOnBoard(new Move(move.toRow, move.toCol, move.fromRow, move.fromCol));
-				Board.set(move.fromRow, move.fromCol, originalPos); 
+				board[move.fromRow][move.fromCol]= originalPos; 
 				if(score<=alpha)
 				{
 					return alpha;
@@ -237,34 +250,34 @@ import java.util.Scanner;
 		 */
 		public int evaluateBoard()
 		{
-			int []otherKingPos = findKingPos(1-colour, Board.getBoard());
-			int []thisKingPos = findKingPos(colour, Board.getBoard());
+			int []otherKingPos = findKingPos(1-colour, board);
+			int []thisKingPos = findKingPos(colour, board);
 
 			int total = 0;
 			
 			//Check if the player's king is in check
-			if(Board.get(otherKingPos[0], otherKingPos[1]).isCheck(1-colour))
+			if(board[otherKingPos[0]][otherKingPos[1]].isCheck(1-colour))
 				total+=200;
 			
 			//Check if our king is king check
-			if(Board.get(thisKingPos[0], thisKingPos[1]).isCheck(1-colour))
+			if(board[thisKingPos[0]][thisKingPos[1]].isCheck(1-colour))
 				total-=200;
 
 			
 			for (int row = 1; row <= 8; row++)
 				for (int col = 1; col <= 8; col++)
-					if (Board.get(row, col) != null)
+					if (board[row][col] != null)
 					{
-						if (Board.get(row, col).colour == colour)
+						if (board[row][col].colour == colour)
 						{
-							total += Board.get(row, col).getType();
-							total += Board.get(row, col).allPossibleMoves().size();
+							total += board[row][col].getType();
+							total += board[row][col].allPossibleMoves().size();
 
 						}
-						else if(Board.get(row, col).colour == 1-colour)
+						else if(board[row][col].colour == 1-colour)
 						{
-							total -= Board.get(row, col).getType();
-							total -= Board.get(row, col).allPossibleMoves().size();
+							total -= board[row][col].getType();
+							total -= board[row][col].allPossibleMoves().size();
 						}
 					}
 			
