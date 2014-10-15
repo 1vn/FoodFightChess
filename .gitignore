@@ -3,7 +3,7 @@
 ### Eclipse ###
 *.pydevproject
 .metadata
-.gradle
+.gradleaJavaVer/
 bin/
 tmp/
 *.tmp
