@@ -6,6 +6,7 @@ var Board = function() {
   var instance = null;
   var test;
   img = new Image();
+  var drawn;
   grid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -26,7 +27,6 @@ var Board = function() {
   this.draw = function() {
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
-    this.setUpBoard();
 
     for (var row = 1; row < NO_ROWS - 1; row++) {
       for (var col = 1; col < NO_COLS - 1; col++) {
@@ -48,6 +48,7 @@ var Board = function() {
           grid[row][col].draw();
       }
     }
+    drawn = true;
   }
 
   this.setUpBoard = function() {
@@ -58,7 +59,7 @@ var Board = function() {
 
     //Place the black pawns
     for (var col = 1; col < NO_COLS - 1; col++) {
-      grid[5][col] = new Pawn(1, 2, col);
+      grid[2][col] = new Pawn(1, 2, col);
     }
 
   }
@@ -69,7 +70,7 @@ var Board = function() {
   }
 
   this.tester2 = function() {
-    return test;
+    return drawn;
   }
 
   this.getBoard = function() {
@@ -77,11 +78,18 @@ var Board = function() {
   }
 
   this.remove = function(row, col) {
-    grid[row][col] = null;
+    grid[row][col] = 0;
   }
 
   this.getPiece = function(row, col) {
-    return grid[row][col];
+
+    if (grid[row][col] != undefined) {
+      console.log("Returning " + grid[row][col].getName() +
+        " from getPiece()");
+      return grid[row][col];
+    } else {
+      console.log("Nothing here");
+    }
   }
 
   this.getRows = function() {
