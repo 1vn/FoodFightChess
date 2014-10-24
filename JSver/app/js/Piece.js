@@ -34,15 +34,18 @@ Piece.prototype.getCol = function() {
   return col;
 }
 
+Piece.prototype.move = function(toRow, toCol) {
+  this.row = toRow;
+  this.col = toCol;
+}
+
 Piece.prototype.clear = function() {
   var xPos = (this.col - 1) * 80;
   var yPos = (this.row - 1) * 80;
   var canvas = document.getElementById("canvas");
   var context = canvas.getContext("2d");
   var img = new Image();
-  img.onload = function() {
-    context.drawImage(img, xPos, yPos);
-  }
+  context.clearRect(0, 0, xPos, yPos);
   img.src = "images/clear.png";
 
 }

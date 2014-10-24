@@ -2,12 +2,11 @@ var Board = function() {
   var SQUARE_DIM = 80;
   var NO_ROWS = 10;
   var NO_COLS = 10;
-  var grid;
   var instance = null;
   var test;
   img = new Image();
   var drawn;
-  grid = [
+  var grid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -25,9 +24,9 @@ var Board = function() {
   arguments.callee._singletonInstance = this;
 
   this.draw = function() {
+    console.log("board drawn");
     var canvas = document.getElementById("canvas");
     var context = canvas.getContext("2d");
-
     for (var row = 1; row < NO_ROWS - 1; row++) {
       for (var col = 1; col < NO_COLS - 1; col++) {
         var xPos = (col - 1) * SQUARE_DIM;
@@ -44,8 +43,11 @@ var Board = function() {
 
     for (var row = 1; row < NO_ROWS - 1; row++) {
       for (var col = 1; col < NO_COLS - 1; col++) {
-        if (grid[row][col] != 0)
+        if (grid[row][col] != 0) {
+          console.log("Drew :" + grid[row][col] + " at row: " + row +
+            " col: " + col);
           grid[row][col].draw();
+        }
       }
     }
     drawn = true;
@@ -82,14 +84,22 @@ var Board = function() {
   }
 
   this.getPiece = function(row, col) {
-
-    if (grid[row][col] != undefined) {
+    console.log()
+    if (grid[row][col] != 0) {
       console.log("Returning " + grid[row][col].getName() +
         " from getPiece()");
       return grid[row][col];
-    } else {
+    } else if (grid[row][col] == 0) {
       console.log("Nothing here");
+      return grid[row][col];
     }
+  }
+
+  this.move = function(fromRow, fromCol, toRow, toCol) {
+    grid[fromRow][fromCol].move(toRow, toCol);
+    grid[toRow][toCol] = grid[fromRow][fromCol];
+    grid[fromRow][fromCol] = 0;
+    console.log("The location moved to now has a : " + grid[toRow][toCol].getName())
   }
 
   this.getRows = function() {
