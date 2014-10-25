@@ -34,9 +34,9 @@ Piece.prototype.getCol = function() {
   return col;
 }
 
-Piece.prototype.move = function(toRow, toCol) {
-  this.row = toRow;
-  this.col = toCol;
+Piece.prototype.move = function(move) {
+  this.row = move.toRow;
+  this.col = move.toCol;
 }
 
 Piece.prototype.clear = function() {

@@ -95,10 +95,11 @@ var Board = function() {
     }
   }
 
-  this.move = function(fromRow, fromCol, toRow, toCol) {
-    grid[fromRow][fromCol].move(toRow, toCol);
-    grid[toRow][toCol] = grid[fromRow][fromCol];
-    grid[fromRow][fromCol] = 0;
+  this.move = function(move) {
+    console.log(move.fromRow + move.fromCol);
+    grid[move.fromRow][move.fromCol].move(move);
+    grid[move.toRow][move.toCol] = grid[move.fromRow][move.fromCol];
+    grid[move.fromRow][move.fromCol] = 0;
     console.log("The location moved to now has a : " + grid[toRow][toCol].getName())
   }
 
