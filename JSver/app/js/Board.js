@@ -100,7 +100,9 @@ var Board = function() {
     grid[move.fromRow][move.fromCol].move(move);
     grid[move.toRow][move.toCol] = grid[move.fromRow][move.fromCol];
     grid[move.fromRow][move.fromCol] = 0;
-    console.log("The location moved to now has a : " + grid[toRow][toCol].getName())
+    console.log("The location moved to now has a : " + grid[move.toRow][
+      move.toCol
+    ].getName())
   }
 
   this.getRows = function() {

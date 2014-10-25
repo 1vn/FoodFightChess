@@ -23,13 +23,13 @@ function selectPiece(event) {
   if (board.getPiece(fromRow, fromCol) != 0) {
     selectedPiece = board.getPiece(fromRow, fromCol);
     console.log(selectedPiece.getName());
-    canvas.addEventListener("mousedown", movePiece);
+    canvas.addEventListener("mousedown", placePiece);
     pieceSelected = true;
     canvas.removeEventListener("mousedown", selectPiece);
   }
 }
 
-function movePiece(event) {
+function placePiece(event) {
   var toRow = Math.floor((event.pageY) / 80 + 1);
   var toCol = Math.floor((event.pageX) / 80 + 1);
   console.log("fromRow: " + fromRow);
@@ -48,6 +48,7 @@ function movePiece(event) {
       " will be moved to row: " + toRow + " col: " + toCol);
     var board = new Board();
     var thisMove = new Move(fromRow, fromCol, toRow, toCol);
+    console.log(thisMove.fromRow);
     board.move(thisMove);
     isSelected = false;
     selectedPiece = 0;
@@ -57,13 +58,10 @@ function movePiece(event) {
     board.draw();
     console.log("movePiece removed");
   }
-  canvas.removeEventListener("mousedown", movePiece);
+  canvas.removeEventListener("mousedown", placePiece);
   canvas.addEventListener("mousedown", selectPiece);
 }
 
-function mouseDrag(event) {
-
-}
 
 
 function removeThatShit(event) {
