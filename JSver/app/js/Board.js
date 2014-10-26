@@ -40,16 +40,6 @@ var Board = function() {
         }
       }
     }
-
-    for (var row = 1; row < NO_ROWS - 1; row++) {
-      for (var col = 1; col < NO_COLS - 1; col++) {
-        if (grid[row][col] != 0) {
-          console.log("Drew :" + grid[row][col] + " at row: " + row +
-            " col: " + col);
-          grid[row][col].draw();
-        }
-      }
-    }
     drawn = true;
   }
 
@@ -98,11 +88,11 @@ var Board = function() {
   this.move = function(move) {
     console.log(move.fromRow + move.fromCol);
     grid[move.fromRow][move.fromCol].move(move);
+    console.log(grid[move.fromRow][move.fromCol].getName());
+    if (grid[move.toRow][move.toCol] != 0)
+      grid[move.toRow][move.toCol].removeDiv();
     grid[move.toRow][move.toCol] = grid[move.fromRow][move.fromCol];
     grid[move.fromRow][move.fromCol] = 0;
-    console.log("The location moved to now has a : " + grid[move.toRow][
-      move.toCol
-    ].getName())
   }
 
   this.getRows = function() {
