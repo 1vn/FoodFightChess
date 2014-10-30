@@ -76,8 +76,6 @@ var Board = function() {
   this.getPiece = function(row, col) {
     console.log()
     if (grid[row][col] != 0) {
-      console.log("Returning " + grid[row][col].getName() +
-        " from getPiece()");
       return grid[row][col];
     } else if (grid[row][col] == 0) {
       console.log("Nothing here");
