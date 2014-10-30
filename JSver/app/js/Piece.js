@@ -27,6 +27,10 @@ Piece.prototype.generateId = function(rank, colour, row, col) {
   console.log(this.idCode);
 }
 
+Piece.prototype.getId = function() {
+  return this.idCode
+}
+
 Piece.prototype.outDiv = function() {
   var updateDiv = document.getElementById(this.idCode);
   updateDiv.style.left = this.xPos + 9 + "px";

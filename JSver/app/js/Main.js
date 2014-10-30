@@ -27,6 +27,9 @@ function selectPiece(event) {
       " col: " + selectedPiece.getCol());
     document.addEventListener("mousemove", dragWrapper);
     pieceSelected = true;
+    var selectedDiv = document.getElementById(selectedPiece.getId())
+    selectedDiv.style.zIndex = 1;
+    document.removeEventListener("mousedown", selectPiece, false);
   }
 }
 
@@ -62,6 +65,8 @@ function placePiece(event) {
     move = new Move(fromRow, fromCol, toRow, toCol);
     var board = new Board();
     board.move(move)
+    var selectedDiv = document.getElementById(selectedPiece.getId())
+    selectedDiv.style.zIndex = 0;
   }
   selectedPiece = 0;
   pieceSelected = false;
