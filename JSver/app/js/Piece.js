@@ -19,6 +19,7 @@ function Piece(rank, colour, row, col, no) {
   this.thisDiv.id = this.idCode;
   this.thisDiv.style.draggable = "true";
   this.outDiv();
+  allPossibleMoves = this.getAllPossibleMoves()
 }
 
 Piece.prototype.generateId = function(rank, colour, row, col) {
@@ -69,10 +70,21 @@ Piece.prototype.getDiv = function() {
 }
 
 Piece.prototype.move = function(move) {
-  this.row = move.toRow;
-  this.col = move.toCol;
-  this.xPos = (move.toCol - 1) * 80;
-  this.yPos = (move.toRow - 1) * 80;
+  if (allPossibleMoves.indexOf(move) >= 1) {
+    this.row = move.toRow;
+    this.col = move.toCol;
+    this.xPos = (move.toCol - 1) * 80;
+    this.yPos = (move.toRow - 1) * 80;
+    this.outDiv();
+  }
+  this.noMove();
+}
+
+Piece.prototype.noMove = function() {
+  this.row = this.row;
+  this.col = this.col;
+  this.xPos = (this.col - 1) * 80;
+  this.yPos = (this.row - 1) * 80;
   this.outDiv();
 }
 
@@ -85,3 +97,4 @@ Piece.prototype.drag = function(xPos, yPos) {
 }
 
 Piece.prototype.getName = function() {}
+Piece.prototype.getAllPossibleMoves = function() {}
