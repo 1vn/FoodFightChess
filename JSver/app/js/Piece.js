@@ -17,7 +17,7 @@ function Piece(rank, colour, row, col, no) {
   document.body.appendChild(this.thisDiv);
   this.generateId(rank, colour, row, col);
   this.thisDiv.id = this.idCode;
-  this.thisDiv.draggable = "true";
+  this.thisDiv.style.draggable = "true";
   this.outDiv();
 }
 
@@ -29,6 +29,10 @@ Piece.prototype.generateId = function(rank, colour, row, col) {
 
 Piece.prototype.getId = function() {
   return this.idCode
+}
+
+Piece.prototype.getDiv = function() {
+  return document.getElementbyId(this.idCode);
 }
 
 Piece.prototype.outDiv = function() {

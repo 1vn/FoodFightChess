@@ -25,10 +25,10 @@ function selectPiece(event) {
     selectedPiece = board.getPiece(fromRow, fromCol);
     console.log(selectedPiece.getName() + " at row: " + selectedPiece.getRow() +
       " col: " + selectedPiece.getCol());
-    document.addEventListener("mousemove", dragWrapper);
     pieceSelected = true;
-    var selectedDiv = document.getElementById(selectedPiece.getId())
+    var selectedDiv = selectedPiece.getDiv();
     selectedDiv.style.zIndex = 1;
+    document.addEventListener("mousemove", dragWrapper);
     document.removeEventListener("mousedown", selectPiece, false);
   }
 }
@@ -58,7 +58,7 @@ function placePiece(event) {
   var toRow = Math.floor((event.pageY) / 80 + 1);
   var toCol = Math.floor((event.pageX) / 80 + 1);
 
-  if (pieceSelected && (toRow != fromRow || toCol != fromCol)) {
+  if (pieceSelected) {
     console.log("placePiece intiated.");
     var toRow = Math.floor((event.pageY) / 80 + 1);
     var toCol = Math.floor((event.pageX) / 80 + 1);

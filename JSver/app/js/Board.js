@@ -84,13 +84,21 @@ var Board = function() {
   }
 
   this.move = function(move) {
-    console.log(move.fromRow + move.fromCol);
+    if (move.fromRow == move.toRow && move.fromCol == move.toCol)
+      this.noMove(move)
+    else {
+      console.log(move.fromRow + move.fromCol);
+      grid[move.fromRow][move.fromCol].move(move);
+      console.log(grid[move.fromRow][move.fromCol].getName());
+      if (grid[move.toRow][move.toCol] != 0)
+        grid[move.toRow][move.toCol].removeDiv();
+      grid[move.toRow][move.toCol] = grid[move.fromRow][move.fromCol];
+      grid[move.fromRow][move.fromCol] = 0;
+    }
+  }
+
+  this.noMove = function(move) {
     grid[move.fromRow][move.fromCol].move(move);
-    console.log(grid[move.fromRow][move.fromCol].getName());
-    if (grid[move.toRow][move.toCol] != 0)
-      grid[move.toRow][move.toCol].removeDiv();
-    grid[move.toRow][move.toCol] = grid[move.fromRow][move.fromCol];
-    grid[move.fromRow][move.fromCol] = 0;
   }
 
   this.getRows = function() {
