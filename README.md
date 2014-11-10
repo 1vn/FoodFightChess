@@ -12,5 +12,5 @@ Gourmet graphics
 
 Status
 ======
-This project was originally written in Java for a school project. It is now currently being ported to the web using pure a vanilla HTML5/CSS/JS ecosystem for learning purposes. 
+This project was originally written in Java for a school project. It is now currently being ported to the web using a pure vanilla HTML5/CSS/JS ecosystem for learning purposes. 
 
