@@ -43,6 +43,7 @@ Piece.prototype.outDiv = function() {
 }
 
 Piece.prototype.removeDiv = function() {
+  console.log("removeDiv called.")
   this.thisDiv.remove();
 }
 
@@ -69,12 +70,23 @@ Piece.prototype.getDiv = function() {
 }
 
 Piece.prototype.move = function(move) {
+  board = new Board();
+  if (move.toRow == this.row && move.toCol == this.Col) {
+    this.noMove();
+    return;
+  }
+  prey = board.getPiece(move.toRow, move.toCol);
+  if (prey != 0) {
+    prey.removeDiv();
+  }
   this.row = move.toRow;
   this.col = move.toCol;
   this.xPos = (move.toCol - 1) * 80;
   this.yPos = (move.toRow - 1) * 80;
+  turn = Math.abs(turn - 1)
   this.outDiv();
 }
+
 
 Piece.prototype.noMove = function() {
   this.row = this.row;

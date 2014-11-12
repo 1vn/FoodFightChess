@@ -1,8 +1,6 @@
 function newGame() {
 
-  var SQUARE_DIM = 80;
-  NO_ROWS = 10;
-  NO_COLS = 10;
+  SQUARE_DIM = 80;
 
   var canvas = document.getElementById("canvas");
   var context = canvas.getContext("2d");
@@ -14,17 +12,17 @@ function newGame() {
   pieceSelected = false;
   board.setUpBoard();
   board.draw();
+  turn = 0;
 }
 
 function selectPiece(event) {
   var board = new Board();
-  fromRow = Math.floor((event.pageY / 80) + 1);
-  fromCol = Math.floor((event.pageX / 80) + 1);
-  if (!pieceSelected && board.getPiece(fromRow, fromCol) != 0) {
+  fromRow = Math.floor((event.pageY / SQUARE_DIM) + 1);
+  fromCol = Math.floor((event.pageX / SQUARE_DIM) + 1);
+  selected = board.getPiece(fromRow, fromCol);
+  if (!pieceSelected && selected != 0 && turn == selected.getColour()) {
     console.log("selectPiece is initiated");
-    selectedPiece = board.getPiece(fromRow, fromCol);
-    console.log(selectedPiece.getName() + " at row: " + selectedPiece.getRow() +
-      " col: " + selectedPiece.getCol());
+    selectedPiece = selected;
     pieceSelected = true;
     var selectedDiv = selectedPiece.getDiv();
     selectedDiv.style.zIndex = 1;
@@ -55,18 +53,18 @@ function placeWrapper(event) {
 }
 
 function placePiece(event) {
-  var toRow = Math.floor((event.pageY) / 80 + 1);
-  var toCol = Math.floor((event.pageX) / 80 + 1);
+  var toRow = Math.floor((event.pageY) / SQUARE_DIM + 1);
+  var toCol = Math.floor((event.pageX) / SQUARE_DIM + 1);
 
   if (pieceSelected) {
     console.log("placePiece intiated.");
-    var toRow = Math.floor((event.pageY) / 80 + 1);
-    var toCol = Math.floor((event.pageX) / 80 + 1);
     move = new Move(fromRow, fromCol, toRow, toCol);
-    var board = new Board();
-    board.move(move)
+    console.log("Main created " + move.getInfo())
+    board = new Board();
+    board.move(move, selectedPiece);
     var selectedDiv = document.getElementById(selectedPiece.getId())
     selectedDiv.style.zIndex = 0;
+    console.log("Turn: " + turn);
   }
   selectedPiece = 0;
   pieceSelected = false;
