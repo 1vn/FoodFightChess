@@ -56,18 +56,6 @@ var Board = function() {
 
   }
 
-  this.move = function(move, piece) {
-    if (piece.isValidMove(move)) {
-      console.log("Moved " + piece.getName() +
-        " with move " + move.getInfo())
-      grid[move.fromRow][move.fromCol].move(move);
-      grid[move.toRow][move.toCol] = piece;
-      grid[move.fromRow][move.fromCol] = 0;
-    } else {
-      grid[move.fromRow][move.fromCol].noMove();
-    }
-  }
-
   this.tester = function(num) {
     test = num;
     return test;
@@ -93,6 +81,22 @@ var Board = function() {
       console.log("Nothing here");
       return grid[row][col];
     }
+  }
+
+  this.move = function(move, piece) {
+    if (piece.isValidMove(move)) {
+      console.log("Moved " + piece.getName() +
+        " with move " + move.getInfo())
+      grid[move.fromRow][move.fromCol].move(move);
+      grid[move.toRow][move.toCol] = piece;
+      grid[move.fromRow][move.fromCol] = 0;
+    } else {
+      grid[move.fromRow][move.fromCol].noMove();
+    }
+  }
+
+  this.noMove = function(move) {
+    grid[move.fromRow][move.fromCol].move(move);
   }
 
   this.getRows = function() {
