@@ -10,21 +10,9 @@ Pawn.prototype.getName = function() {
   return 'Pawn';
 }
 
-Pawn.prototype.noOfMoves = 0
 Pawn.prototype.move = function(move) {
   Piece.prototype.move.call(this, move);
   this.noOfMoves++;
-}
-
-Pawn.prototype.isValidMove = function(move) {
-  console.log("Analyzing " + move.getInfo())
-  allPossibleMoves = this.getAllPossibleMoves();
-  for (var i = 0; i < allPossibleMoves.length; i++) {
-    checkMove = allPossibleMoves[i];
-    if (checkMove.fromRow === move.fromRow && checkMove.fromCol === move.fromCol &&
-      checkMove.toRow === move.toRow && checkMove.toCol === move.toCol)
-      return true;
-  }
 }
 
 Pawn.prototype.getAllPossibleMoves = function() {

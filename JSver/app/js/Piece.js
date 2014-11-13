@@ -47,7 +47,16 @@ Piece.prototype.removeDiv = function() {
   this.thisDiv.remove();
 }
 
-
+Piece.prototype.isValidMove = function(move) {
+  console.log("Analyzing " + move.getInfo())
+  allPossibleMoves = this.getAllPossibleMoves();
+  for (var i = 0; i < allPossibleMoves.length; i++) {
+    checkMove = allPossibleMoves[i];
+    if (checkMove.fromRow === move.fromRow && checkMove.fromCol === move.fromCol &&
+      checkMove.toRow === move.toRow && checkMove.toCol === move.toCol)
+      return true;
+  }
+}
 
 Piece.prototype.getRank = function() {
   return this.rank;
@@ -77,6 +86,7 @@ Piece.prototype.move = function(move) {
   }
   prey = board.getPiece(move.toRow, move.toCol);
   if (prey != 0) {
+    grave.push(prey);
     prey.removeDiv();
   }
   this.row = move.toRow;

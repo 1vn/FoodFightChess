@@ -1,6 +1,5 @@
-canvas{
+#canvas{
 border: 1px solid black;
 margin: 0 auto;
-left: 0px;
-top: 0px;
+padding:0 auto;
 }

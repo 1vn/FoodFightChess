@@ -13,6 +13,7 @@ function newGame() {
   board.setUpBoard();
   board.draw();
   turn = 0;
+  grave = []
 }
 
 function selectPiece(event) {
@@ -65,6 +66,10 @@ function placePiece(event) {
     var selectedDiv = document.getElementById(selectedPiece.getId())
     selectedDiv.style.zIndex = 0;
     console.log("Turn: " + turn);
+    console.log("Dead pieces are: ")
+    for (var i = 0; i < grave.length; i++) {
+      console.log(grave[i].getId());
+    }
   }
   selectedPiece = 0;
   pieceSelected = false;
