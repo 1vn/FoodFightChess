@@ -10,9 +10,28 @@ Rook.prototype.getName = function() {
 }
 
 Rook.prototype.getAllPossibleMoves = function(){
-  //Check logic for white pieces (bottom)
-  if(this.colour == 0)
-    {
-      for(var dRow = -1; dRow <= 1; dRow += 2)
-    }
+  console.log("allPossibleMoves initiated")
+  var board = new Board()
+  var allPossibleMoves = []
+      for(var dy = -1; dy <= 1; dy += 2)
+        {
+          dRow = this.row + dy;
+          while(dRow > 0 && dRow < 9 && (board.getPiece(dRow, this.col) == 0 || (board.getPiece(dRow,this.col) != 0 && board.getPiece(dRow,this.col).getColour() != this.colour)))
+            {
+              allPossibleMoves.push(new Move(this.row, this.col, dRow, this.col))
+              dRow += dy;
+            }
+        }
+        for(var dx = -1; dx <= 1; dx += 2)
+          {
+            dCol = this.col + dx;
+            while(dCol > 0 && dCol < 9 && (board.getPiece(this.row, dCol) == 0 || (board.getPiece(this.row, dCol) != 0 && board.getPiece(this.row, dCol).getColour() != this.colour)))
+              {
+                allPossibleMoves.push(new Move(this.row, this.col, this.row, dCol))
+                dCol += dx;
+              }
+          }
+
+
+    return allPossibleMoves
 }
