@@ -1,5 +1,5 @@
 function Pawn(playerColour, row, col) {
-  var RANK = 1;
+  var score = 1;
   Piece.call(this, RANK, playerColour, row, col);
   this.noOfMoves = 0
 }

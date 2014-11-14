@@ -95,16 +95,17 @@ var Board = function() {
       }
     }
 
-    this.noMove = function(move) {
-      grid[move.fromRow][move.fromCol].move(move);
-    }
+    this.getScore = function(colour) {
+      board = new Board(); //getInstance
+      score = 0
+      for (var row = 1; row < 9; row++) {
+        for (var col = 1; col < 9; col++) {
+          space = board.getPiece(row, col);
+          if (space != 0 && space.getColour != colour)
+            score += space.getScore();
+        }
+      }
 
-    this.getRows = function() {
-      return NO_Of_ROWS;
-    }
-
-    this.getCols = function() { //for clarity
-      return NO_OF_COLS;
     }
   }
 }

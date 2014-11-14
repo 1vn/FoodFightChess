@@ -19,6 +19,11 @@ function Piece(rank, colour, row, col, no) {
   this.thisDiv.id = this.idCode;
   this.thisDiv.style.draggable = "true";
   this.outDiv();
+  var score;
+}
+
+Piece.prototype.getScore = function() {
+  return this.score;
 }
 
 Piece.prototype.generateId = function(rank, colour, row, col) {
