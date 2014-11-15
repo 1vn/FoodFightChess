@@ -26,9 +26,11 @@ function selectPiece(event) {
     selectedPiece = selected;
     pieceSelected = true;
     var selectedDiv = selectedPiece.getDiv();
+    console.log("Selected Piece has " + selectedPiece.getNoOfMoves());
     selectedDiv.style.zIndex = 1;
     document.addEventListener("mousemove", dragWrapper);
-    document.removeEventListener("mousedown", selectPiece, false);
+    document
+      .removeEventListener("mousedown", selectPiece, false);
   }
 }
 
@@ -70,6 +72,15 @@ function placePiece(event) {
     for (var i = 0; i < grave.length; i++) {
       console.log(grave[i].getId());
     }
+    console.log("Targetted white pieces are: ")
+    for (var i = 0; i < Piece.prototype.wTargets.length; i++) {
+      console.log(wTargets[i].getId());
+    }
+    console.log("Targetted black pieces are: ")
+    for (var i = 0; i < Piece.prototype.wTargets.length; i++) {
+      console.log(wTargets[i].getId());
+    }
+
   }
   selectedPiece = 0;
   pieceSelected = false;

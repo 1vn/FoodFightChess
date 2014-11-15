@@ -18,7 +18,6 @@ var Board = function() {
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
   ];
-
   if (arguments.callee._singletonInstance) //Singleton block
     return arguments.callee._singletonInstance;
   arguments.callee._singletonInstance = this;
@@ -44,6 +43,7 @@ var Board = function() {
   }
 
   this.setUpBoard = function() {
+
     //Place the pawns
     for (var col = 1; col < NO_COLS - 1; col++) {
       grid[7][col] = new Pawn(0, 7, col);
@@ -55,57 +55,57 @@ var Board = function() {
       grid[8][col] = new Rook(0, 8, col);
       grid[1][col] = new Rook(1, 1, col);
     }
+  }
 
-    this.tester = function(num) {
-      test = num;
-      return test;
+  this.tester = function(num) {
+    test = num;
+    return test;
+  }
+
+  this.tester2 = function() {
+    return drawn;
+  }
+
+  this.getBoard = function() {
+    return grid;
+  }
+
+  this.remove = function(row, col) {
+    grid[row][col] = 0;
+  }
+
+  this.getPiece = function(row, col) {
+    console.log()
+    if (grid[row][col] != 0) {
+      return grid[row][col];
+    } else if (grid[row][col] == 0) {
+      console.log("Nothing here");
+      return grid[row][col];
     }
+  }
 
-    this.tester2 = function() {
-      return drawn;
+  this.move = function(move, piece) {
+    if (piece.isValidMove(move)) {
+      console.log("Moved " + piece.getName() +
+        " with move " + move.getInfo())
+      grid[move.fromRow][move.fromCol].move(move);
+      grid[move.toRow][move.toCol] = piece;
+      grid[move.fromRow][move.fromCol] = 0;
+    } else {
+      grid[move.fromRow][move.fromCol].noMove();
     }
+  }
 
-    this.getBoard = function() {
-      return grid;
-    }
-
-    this.remove = function(row, col) {
-      grid[row][col] = 0;
-    }
-
-    this.getPiece = function(row, col) {
-      console.log()
-      if (grid[row][col] != 0) {
-        return grid[row][col];
-      } else if (grid[row][col] == 0) {
-        console.log("Nothing here");
-        return grid[row][col];
+  this.getScore = function(colour) {
+    board = new Board(); //getInstance
+    score = 0
+    for (var row = 1; row < 9; row++) {
+      for (var col = 1; col < 9; col++) {
+        space = board.getPiece(row, col);
+        if (space != 0 && space.getColour != colour)
+          score += space.getScore();
       }
     }
 
-    this.move = function(move, piece) {
-      if (piece.isValidMove(move)) {
-        console.log("Moved " + piece.getName() +
-          " with move " + move.getInfo())
-        grid[move.fromRow][move.fromCol].move(move);
-        grid[move.toRow][move.toCol] = piece;
-        grid[move.fromRow][move.fromCol] = 0;
-      } else {
-        grid[move.fromRow][move.fromCol].noMove();
-      }
-    }
-
-    this.getScore = function(colour) {
-      board = new Board(); //getInstance
-      score = 0
-      for (var row = 1; row < 9; row++) {
-        for (var col = 1; col < 9; col++) {
-          space = board.getPiece(row, col);
-          if (space != 0 && space.getColour != colour)
-            score += space.getScore();
-        }
-      }
-
-    }
   }
 }

@@ -1,6 +1,6 @@
 function Rook(playerColour, row, col) {
   var score = 5;
-  Piece.call(this, RANK, playerColour, row, col);
+  Piece.call(this, score, playerColour, row, col);
 }
 
 Rook.prototype = Object.create(Piece.prototype);

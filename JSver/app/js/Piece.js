@@ -1,7 +1,7 @@
 var PIECES_NAMES = ['null', 'Pawn']; //debug
 var COLOUR_NAMES = ['white', 'black']; //debug
-function Piece(rank, colour, row, col, no) {
-  this.rank = rank;
+function Piece(score, colour, row, col, no) {
+  this.score = score;
   this.colour = colour;
   this.row = row;
   this.col = col;
@@ -12,15 +12,18 @@ function Piece(rank, colour, row, col, no) {
   this.thisDiv.style.width = "80px";
   this.thisDiv.style.height = "80px";
   var img = new Image();
-  img.src = "images/" + this.colour + this.rank + ".png";
+  img.src = "images/" + this.colour + this.score + ".png";
   this.thisDiv.appendChild(img);
   document.body.appendChild(this.thisDiv);
-  this.generateId(rank, colour, row, col);
+  this.generateId(score, colour, row, col);
   this.thisDiv.id = this.idCode;
-  this.thisDiv.style.draggable = "true";
   this.outDiv();
   var score;
+  this.allPossibleMoves = this.getAllPossibleMoves();
 }
+
+Piece.prototype.wTargets = [];
+Piece.prototype.bTargets = [];
 
 Piece.prototype.getScore = function() {
   return this.score;
@@ -54,17 +57,16 @@ Piece.prototype.removeDiv = function() {
 
 Piece.prototype.isValidMove = function(move) {
   console.log("Analyzing " + move.getInfo())
-  allPossibleMoves = this.getAllPossibleMoves();
-  for (var i = 0; i < allPossibleMoves.length; i++) {
-    checkMove = allPossibleMoves[i];
+  for (var i = 0; i < this.allPossibleMoves.length; i++) {
+    checkMove = this.allPossibleMoves[i];
     if (checkMove.fromRow === move.fromRow && checkMove.fromCol === move.fromCol &&
       checkMove.toRow === move.toRow && checkMove.toCol === move.toCol)
       return true;
   }
 }
 
-Piece.prototype.getRank = function() {
-  return this.rank;
+Piece.prototype.getScore = function() {
+  return this.score;
 }
 
 Piece.prototype.getRow = function() {
@@ -99,6 +101,7 @@ Piece.prototype.move = function(move) {
   this.xPos = (move.toCol - 1) * 80;
   this.yPos = (move.toRow - 1) * 80;
   turn = Math.abs(turn - 1)
+  this.allPossibleMoves = this.getAllPossibleMoves();
   this.outDiv();
 }
 
