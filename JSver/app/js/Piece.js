@@ -101,8 +101,12 @@ Piece.prototype.move = function(move) {
   this.xPos = (move.toCol - 1) * 80;
   this.yPos = (move.toRow - 1) * 80;
   turn = Math.abs(turn - 1)
-  this.allPossibleMoves = this.getAllPossibleMoves();
+  this.allPossibleMoves;
   this.outDiv();
+  if (this.score == 1)
+    this.noOfMoves++;
+
+  board.updateMoves();
 }
 
 

@@ -74,11 +74,11 @@ function placePiece(event) {
     }
     console.log("Targetted white pieces are: ")
     for (var i = 0; i < Piece.prototype.wTargets.length; i++) {
-      console.log(wTargets[i].getId());
+      console.log(Piece.prototype.wTargets[i]);
     }
     console.log("Targetted black pieces are: ")
     for (var i = 0; i < Piece.prototype.wTargets.length; i++) {
-      console.log(wTargets[i].getId());
+      console.log(Piece.prototype.bTargets[i]);
     }
 
   }
