@@ -31,7 +31,5 @@ Rook.prototype.getAllPossibleMoves = function() {
       dCol += dx;
     }
   }
-
-
-  return allPossibleMoves
+  this.allPossibleMoves = allPossibleMoves;
 }
