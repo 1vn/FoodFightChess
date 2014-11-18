@@ -26,7 +26,6 @@ function selectPiece(event) {
     selectedPiece = selected;
     pieceSelected = true;
     var selectedDiv = selectedPiece.getDiv();
-    console.log("Selected Piece has " + selectedPiece.getNoOfMoves());
     selectedDiv.style.zIndex = 1;
     document.addEventListener("mousemove", dragWrapper);
     document
@@ -68,6 +67,8 @@ function placePiece(event) {
     var selectedDiv = document.getElementById(selectedPiece.getId())
     selectedDiv.style.zIndex = 0;
     console.log("Turn: " + turn);
+    board.updateMoves();
+
     console.log("Dead pieces are: ")
     for (var i = 0; i < grave.length; i++) {
       console.log(grave[i].getId());
@@ -77,10 +78,9 @@ function placePiece(event) {
       console.log(Piece.prototype.wTargets[i]);
     }
     console.log("Targetted black pieces are: ")
-    for (var i = 0; i < Piece.prototype.wTargets.length; i++) {
+    for (var i = 0; i < Piece.prototype.bTargets.length; i++) {
       console.log(Piece.prototype.bTargets[i]);
     }
-
   }
   selectedPiece = 0;
   pieceSelected = false;

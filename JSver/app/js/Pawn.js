@@ -1,7 +1,6 @@
 function Pawn(playerColour, row, col) {
   var score = 1;
   Piece.call(this, score, playerColour, row, col);
-  this.noOfMoves = 0;
 }
 
 Pawn.prototype = Object.create(Piece.prototype);
@@ -17,15 +16,11 @@ Pawn.prototype.move = function(move) {
 }
 
 Pawn.prototype.getAllPossibleMoves = function() {
-  console.log("allPossibleMoves initiated")
   var board = new Board()
   var allPossibleMoves = []
-  console.log("This piece has " + this.noOfMoves);
-  //Logic for white pieces (bottom)
+    //Logic for white pieces (bottom)
   if (this.colour == 0) {
-    if (this.noOfMoves = 0) {
-      console.log("Two-piece possible for piece " +
-        this.getId())
+    if (this.noOfMoves == 0) {
       two_step = new Move(this.row, this.col, this.row - 2, this.col);
       allPossibleMoves.push(two_step)
     }
@@ -36,7 +31,7 @@ Pawn.prototype.getAllPossibleMoves = function() {
         kill = new Move(this.row, this.col, this.row - 1, this.col + d);
         allPossibleMoves.push(kill);
         if (Piece.prototype.bTargets.indexOf(toSpace) <= -1)
-          Piece.prototype.bTargets.push(toSpace)
+          Piece.prototype.bTargets.push(toSpace);
       }
     }
     //Check for empty space in front
@@ -46,8 +41,6 @@ Pawn.prototype.getAllPossibleMoves = function() {
         this.col))
   } else if (this.colour != 0) { //Logic for black pieces (top)
     if (this.noOfMoves == 0) {
-      console.log("Two-piece possible for piece " +
-        this.getId())
       two_step = new Move(this.row, this.col, this.row + 2, this.col);
       allPossibleMoves.push(two_step);
     }

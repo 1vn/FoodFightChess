@@ -18,6 +18,7 @@ function Piece(score, colour, row, col, no) {
   this.generateId(score, colour, row, col);
   this.thisDiv.id = this.idCode;
   this.outDiv();
+  this.noOfMoves = 0;
   var score;
   this.allPossibleMoves = this.getAllPossibleMoves();
 }
@@ -56,7 +57,6 @@ Piece.prototype.removeDiv = function() {
 }
 
 Piece.prototype.isValidMove = function(move) {
-  console.log("Analyzing " + move.getInfo())
   for (var i = 0; i < this.allPossibleMoves.length; i++) {
     checkMove = this.allPossibleMoves[i];
     if (checkMove.fromRow === move.fromRow && checkMove.fromCol === move.fromCol &&
@@ -101,12 +101,10 @@ Piece.prototype.move = function(move) {
   this.xPos = (move.toCol - 1) * 80;
   this.yPos = (move.toRow - 1) * 80;
   turn = Math.abs(turn - 1)
-  this.allPossibleMoves;
+  Piece.prototype.wTargets = [];
+  Piece.prototype.bTargets = [];
   this.outDiv();
-  if (this.score == 1)
-    this.noOfMoves++;
-
-  board.updateMoves();
+  this.noOfMoves++;
 }
 
 

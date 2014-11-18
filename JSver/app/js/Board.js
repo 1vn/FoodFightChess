@@ -77,19 +77,15 @@ var Board = function() {
   }
 
   this.getPiece = function(row, col) {
-    console.log()
     if (grid[row][col] != 0) {
       return grid[row][col];
     } else if (grid[row][col] == 0) {
-      console.log("Nothing here");
       return grid[row][col];
     }
   }
 
   this.move = function(move, piece) {
     if (piece.isValidMove(move)) {
-      console.log("Moved " + piece.getName() +
-        " with move " + move.getInfo())
       grid[move.fromRow][move.fromCol].move(move);
       grid[move.toRow][move.toCol] = piece;
       grid[move.fromRow][move.fromCol] = 0;
