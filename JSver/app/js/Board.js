@@ -57,7 +57,7 @@ var Board = function() {
     }
 
     //Place the queens
-    grid[8][5] = new Queen(0, 8, 5)
+    grid[8][5] = new Queen(0, 8, 5);
     grid[1][4] = new Queen(1, 1, 4);
 
     this.updateMoves();
