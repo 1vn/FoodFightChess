@@ -114,8 +114,10 @@ var Board = function() {
   this.updateMoves = function() {
     for (row = 1; row < 9; row++) {
       for (col = 1; col < 9; col++) {
-        if (grid[row][col] != 0)
+        if (grid[row][col] != 0) {
           grid[row][col].getAllPossibleMoves();
+          console.log("Updated moves for: " + grid[row][col].getName())
+        }
       }
     }
   }

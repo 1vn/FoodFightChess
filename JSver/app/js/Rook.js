@@ -47,5 +47,6 @@ Rook.prototype.getAllPossibleMoves = function() {
         Piece.prototype.wTargets.push(toSpace);
     }
   }
+  console.log("Moves updated for " + this.idCode);
   this.allPossibleMoves = allPossibleMoves;
 }

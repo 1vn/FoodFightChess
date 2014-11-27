@@ -20,7 +20,6 @@ function Piece(score, colour, row, col, no) {
   this.outDiv();
   this.noOfMoves = 0;
   var score;
-  this.allPossibleMoves = this.getAllPossibleMoves();
 }
 
 Piece.prototype.wTargets = [];
