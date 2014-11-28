@@ -11,8 +11,17 @@ Pawn.prototype.getName = function() {
 Pawn.prototype.getNoOfMoves = function() {
   return this.noOfMoves;
 }
+Pawn.prototype.setNoOfMoves = function(noOfMoves) {
+  this.noOfMoves = noOfMoves;
+}
 Pawn.prototype.move = function(move) {
   Piece.prototype.move.call(this, move);
+}
+
+Pawn.prototype.copy = function() {
+  copy = new Pawn(this.colour, this.row, this.col);
+  copy.setNoOfMoves(this.noOfMoves);
+  return copy
 }
 
 Pawn.prototype.getAllPossibleMoves = function() {

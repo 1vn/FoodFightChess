@@ -9,6 +9,11 @@ Queen.prototype.getName = function() {
   return 'Queen';
 }
 
+Queen.prototype.copy = function() {
+  copy = new Queen(this.colour, this.row, this.col);
+  return copy
+}
+
 Queen.prototype.getAllPossibleMoves = function() {
   console.log("Getting Queen moves");
   board = new Board();

@@ -89,6 +89,7 @@ var Board = function() {
   }
 
   this.move = function(move, piece) {
+    this.remember();
     if (piece.isValidMove(move)) {
       grid[move.fromRow][move.fromCol].move(move);
       grid[move.toRow][move.toCol] = piece;
@@ -108,7 +109,6 @@ var Board = function() {
           score += space.getScore();
       }
     }
-
   }
 
   this.updateMoves = function() {
@@ -120,5 +120,29 @@ var Board = function() {
         }
       }
     }
+  }
+  this.remember = function() {
+    mStack = new MentoStack();
+    mento = new MentoBoard();
+    console.log("mento created");
+    mStack.push(mento);
+  }
+
+  /**
+    Gets last state of the board
+  */
+  this.undo = function(step) {
+    mStack = new MentoStack();
+    var s = step
+    while (s > 1)
+      mStack.pop();
+    mento = mStack.pop();
+    for (var row = 1; row < 9; row++)
+      for (var col = 1; col < 9; col++) {
+        space = mento.getPiece(row, col)
+        if (space != 0) {
+          grid[row][col] = space.copy()
+        }
+      }
   }
 }

@@ -9,6 +9,11 @@ Rook.prototype.getName = function() {
   return 'Rook';
 }
 
+Rook.prototype.copy = function() {
+  copy = new Rook(this.colour, this.row, this.col);
+  return copy
+}
+
 Rook.prototype.getAllPossibleMoves = function() {
   var board = new Board()
   var allPossibleMoves = []

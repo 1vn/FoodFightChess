@@ -115,6 +115,8 @@ Piece.prototype.noMove = function() {
   this.outDiv();
 }
 
+Piece.prototype.copy = function() {}
+
 Piece.prototype.drag = function(xPos, yPos) {
   xPos = document.all ? window.event.clientX : xPos;
   yPos = document.all ? window.event.clientY : yPos;
