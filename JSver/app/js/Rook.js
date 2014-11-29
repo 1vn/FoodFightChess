@@ -11,6 +11,8 @@ Rook.prototype.getName = function() {
 
 Rook.prototype.copy = function() {
   copy = new Rook(this.colour, this.row, this.col);
+  copy.removeDiv()
+
   return copy
 }
 

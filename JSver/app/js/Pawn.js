@@ -21,6 +21,7 @@ Pawn.prototype.move = function(move) {
 Pawn.prototype.copy = function() {
   copy = new Pawn(this.colour, this.row, this.col);
   copy.setNoOfMoves(this.noOfMoves);
+  copy.removeDiv()
   return copy
 }
 

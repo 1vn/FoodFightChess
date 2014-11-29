@@ -11,6 +11,7 @@ Queen.prototype.getName = function() {
 
 Queen.prototype.copy = function() {
   copy = new Queen(this.colour, this.row, this.col);
+  copy.removeDiv()
   return copy
 }
 

@@ -121,6 +121,10 @@ var Board = function() {
       }
     }
   }
+
+  /**
+    Store the last state of the board
+  */
   this.remember = function() {
     mStack = new MentoStack();
     mento = new MentoBoard();
