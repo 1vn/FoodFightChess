@@ -56,6 +56,12 @@ var Board = function() {
       grid[1][col] = new Rook(1, 1, col);
     }
 
+    //Place knights
+    for (var col = 1; col < NO_COLS - 1; col += 4) {
+      grid[8][col] = new Knight(0, 8, col);
+      grid[1][col] = new Knight(1, 2, col);
+    }
+
     //Place the queens
     grid[8][5] = new Queen(0, 8, 5);
     grid[1][4] = new Queen(1, 1, 4);
