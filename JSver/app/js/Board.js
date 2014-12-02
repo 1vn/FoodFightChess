@@ -57,9 +57,9 @@ var Board = function() {
     }
 
     //Place knights
-    for (var col = 1; col < NO_COLS - 1; col += 4) {
+    for (var col = 2; col < NO_COLS - 1; col += 5) {
       grid[8][col] = new Knight(0, 8, col);
-      grid[1][col] = new Knight(1, 2, col);
+      grid[1][col] = new Knight(1, 1, col);
     }
 
     //Place the queens

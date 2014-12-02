@@ -1,4 +1,4 @@
-var King = function(playeColour, row, col) {
+var King = function(playerColour, row, col) {
   var score = 200;
   Piece.call(this, score, playerColour, row, col)
 }
