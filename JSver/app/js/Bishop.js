@@ -14,3 +14,9 @@ Bishop.prototype.copy = function() {
 Bishop.prototype.getName = function() {
   return "Bishop"
 }
+
+Bishop.getAllPossibleMoves = function(){
+  board = new Board();
+  allPossibleMoves = [];
+  this.allPossibleMoves = allPossibleMoves;
+}
