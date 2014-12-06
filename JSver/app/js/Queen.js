@@ -1,4 +1,4 @@
-function Queen(playerColour, row, col) {
+var Queen = function(playerColour, row, col) {
   var score = 8;
   Piece.call(this, score, playerColour, row, col);
 }
@@ -31,19 +31,19 @@ Queen.prototype.getAllPossibleMoves = function() {
         allPossibleMoves.push(new Move(this.row, this.col, dRow, dCol));
         dRow += dy;
         dCol += dx;
-        if (dCol > 0 && dCol < 9 && dRow > 0 && dRow < 9 && board.getPiece(
-            dRow, dCol) != 0 && board.getPiece(
-            dRow, dCol).getColour() != this.colour) {
-          allPossibleMoves.push(new Move(this.row, this.col, dRow, dCol))
-          var toSpace = board.getPiece(dRow, dCol)
-          if (this.colour == 0 && Piece.prototype.bTargets.indexOf(toSpace) <=
-            -1)
-            Piece.prototype.bTargets.push(toSpace);
-          else if (this.colour == 1 && Piece.prototype.wTargets.indexOf(
-              toSpace) <=
-            -1)
-            Piece.prototype.wTargets.push(toSpace);
-        }
+      }
+      if (dCol > 0 && dCol < 9 && dRow > 0 && dRow < 9 && board.getPiece(
+          dRow, dCol) != 0 && board.getPiece(
+          dRow, dCol).getColour() != this.colour) {
+        allPossibleMoves.push(new Move(this.row, this.col, dRow, dCol))
+        var toSpace = board.getPiece(dRow, dCol)
+        if (this.colour == 0 && Piece.prototype.bTargets.indexOf(toSpace) <=
+          -1)
+          Piece.prototype.bTargets.push(toSpace);
+        else if (this.colour == 1 && Piece.prototype.wTargets.indexOf(
+            toSpace) <=
+          -1)
+          Piece.prototype.wTargets.push(toSpace);
       }
     }
   }
