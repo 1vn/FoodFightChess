@@ -15,6 +15,11 @@ Rook.prototype.copy = function() {
   return copy
 }
 
+Rook.prototype.test = function() {
+  targets = [Piece.prototype.wTargets, Piece.prototype.bTargets]
+  console.log("Test ran" + targets[0]);
+}
+
 Rook.prototype.getAllPossibleMoves = function() {
   var board = new Board()
   var allPossibleMoves = []

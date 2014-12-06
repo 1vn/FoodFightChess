@@ -63,7 +63,7 @@ var Board = function() {
     }
 
     //Place Bishops
-    for (var col = 3; col < NO_COLS - 1; col += 3) {
+    for (var col = 3; col < 7; col += 3) {
       grid[8][col] = new Bishop(0, 8, col);
       grid[1][col] = new Bishop(1, 1, col);
     }

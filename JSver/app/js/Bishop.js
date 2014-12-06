@@ -10,16 +10,17 @@ Bishop.prototype.getName = function() {
 }
 
 Bishop.prototype.copy = function() {
-  copy = new Bishop(this.playerColour, this.row, this.col);
+  copy = new Bishop(this.colour, this.row, this.col);
   copy.removeDiv();
   return copy;
 }
 
 
-Bishop.getAllPossibleMoves = function() {
+Bishop.prototype.getAllPossibleMoves = function() {
+  console.log("Getting Bishop moves.")
   board = new Board();
   allPossibleMoves = [];
-  for (var dy = -1; dy <= 1; dy += 2)
+  for (var dy = -1; dy <= 1; dy += 2) {
     for (var dx = -1; dx <= 1; dx += 2) {
       dRow = this.row + dy;
       dCol = this.col + dx;
@@ -44,6 +45,6 @@ Bishop.getAllPossibleMoves = function() {
           Piece.prototype.wTargets.push(toSpace);
       }
     }
+  }
   this.allPossibleMoves = allPossibleMoves;
-
 }
