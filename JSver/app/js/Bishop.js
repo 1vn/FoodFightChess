@@ -15,8 +15,11 @@ Bishop.prototype.getName = function() {
   return "Bishop"
 }
 
-Bishop.getAllPossibleMoves = function(){
+Bishop.getAllPossibleMoves = function() {
   board = new Board();
   allPossibleMoves = [];
   this.allPossibleMoves = allPossibleMoves;
+  for (var dy = 1; dy <= 1; dy += 2)
+    for (var dx = 1; dx <= 1; dx += 2)
+
 }
