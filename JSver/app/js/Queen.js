@@ -28,14 +28,18 @@ Queen.prototype.getAllPossibleMoves = function() {
       while (dRow < 9 && dRow > 0 && dCol < 9 && dCol > 0 && board.getPiece(
           dRow, dCol) == 0) {
         console.log("Added for: " + this.idCode + " " + dRow + dCol)
-        allPossibleMoves.push(new Move(this.row, this.col, dRow, dCol));
+        move = new Move(this.row, this.col, dRow, dCol);
+        if(!isCheck(move));
+          allPossibleMoves.push(move);
         dRow += dy;
         dCol += dx;
       }
       if (dCol > 0 && dCol < 9 && dRow > 0 && dRow < 9 && board.getPiece(
           dRow, dCol) != 0 && board.getPiece(
           dRow, dCol).getColour() != this.colour) {
-        allPossibleMoves.push(new Move(this.row, this.col, dRow, dCol))
+        move = new Move(this.row, this.col, dRow, dCol);
+        if(!isCheck(move));
+        allPossibleMoves.push(move);
         var toSpace = board.getPiece(dRow, dCol)
         if (this.colour == 0 && Piece.prototype.bTargets.indexOf(toSpace) <=
           -1)
