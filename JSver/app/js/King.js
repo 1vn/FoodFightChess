@@ -14,5 +14,4 @@ King.prototype.updateKingPos(){
 King.prototype.isCheck = function(move) {
   targets = [Piece.prototype.wTargets, Piece.prototype.bTargets]
   return true
-
 }

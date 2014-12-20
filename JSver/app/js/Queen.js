@@ -29,8 +29,7 @@ Queen.prototype.getAllPossibleMoves = function() {
           dRow, dCol) == 0) {
         console.log("Added for: " + this.idCode + " " + dRow + dCol)
         move = new Move(this.row, this.col, dRow, dCol);
-        if(!isCheck(move));
-          allPossibleMoves.push(move);
+        allPossibleMoves.push(move);
         dRow += dy;
         dCol += dx;
       }
@@ -38,7 +37,6 @@ Queen.prototype.getAllPossibleMoves = function() {
           dRow, dCol) != 0 && board.getPiece(
           dRow, dCol).getColour() != this.colour) {
         move = new Move(this.row, this.col, dRow, dCol);
-        if(!isCheck(move));
         allPossibleMoves.push(move);
         var toSpace = board.getPiece(dRow, dCol)
         if (this.colour == 0 && Piece.prototype.bTargets.indexOf(toSpace) <=

@@ -32,7 +32,6 @@ Pawn.prototype.getAllPossibleMoves = function() {
   if (this.colour == 0) {
     if (this.noOfMoves == 0) {
       two_step = new Move(this.row, this.col, this.row - 2, this.col);
-      if(!isCheck(two_step))
       allPossibleMoves.push(two_step)
     }
     //Check for enemy on adjacent diagonal

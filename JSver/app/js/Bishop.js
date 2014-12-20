@@ -35,7 +35,6 @@ Bishop.getAllPossibleMoves = function() {
           dRow, dCol) != 0 && board.getPiece(
           dRow, dCol).getColour() != this.colour) {
             move = new Move (this.row, this.col, dRow, dCol)
-        if(!isCheck(move));
           allPossibleMoves.push(move);
         var toSpace = board.getPiece(dRow, dCol)
         if (this.colour == 0 && Piece.prototype.bTargets.indexOf(toSpace) <=
