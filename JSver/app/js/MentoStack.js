@@ -14,6 +14,6 @@ var MentoStack = function() {
     stack.push(mento)
   }
   this.pop = function() {
-    stack.pop()
+    return stack.pop()
   }
 }

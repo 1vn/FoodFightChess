@@ -59,9 +59,21 @@ Piece.prototype.isValidMove = function(move) {
   for (var i = 0; i < this.allPossibleMoves.length; i++) {
     checkMove = this.allPossibleMoves[i];
     if (checkMove.fromRow === move.fromRow && checkMove.fromCol === move.fromCol &&
-      checkMove.toRow === move.toRow && checkMove.toCol === move.toCol)
-      return true;
+      checkMove.toRow === move.toRow && checkMove.toCol === move.toCol && !isCheck(move))
+      {
+        return true;
+      }
   }
+}
+
+var isCheck = function(move){
+  var board = new Board()
+  isCheck = false;
+  board.remember()
+
+
+  board.undo();
+  return isCheck
 }
 
 Piece.prototype.getScore = function() {
