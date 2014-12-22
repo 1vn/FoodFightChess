@@ -111,6 +111,16 @@ var Board = function() {
     }
   }
 
+  /**
+  *Precondition: move is a valid move
+  *
+  */
+  this.forceMove = function(move, piece){
+    grid[move.fromRow][move.fromCol].move(move);
+    grid[move.toRow][move.toCol] = piece;
+    grid[move.fromRow][move.fromCol] = 0;
+  }
+
   this.getScore = function(colour) {
     board = new Board(); //getInstance
     score = 0

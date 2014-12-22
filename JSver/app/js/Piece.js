@@ -70,8 +70,8 @@ var isCheck = function(move){
   var board = new Board()
   isCheck = false;
   board.remember()
-
-
+  board.forceMove(move)
+  
   board.undo();
   return isCheck
 }
