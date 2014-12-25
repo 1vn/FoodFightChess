@@ -6,8 +6,8 @@ if (arguments.callee._singletonInstance) //Singleton block
   return arguments.callee._singletonInstance;
 arguments.callee._singletonInstance = this;
 
-this.makeMove = function(){
-
+this.makeMove = function{
+  return move
 }
 
 this.evaluateBoard = function(){
