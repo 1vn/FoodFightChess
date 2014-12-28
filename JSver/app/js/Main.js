@@ -9,10 +9,10 @@ function newGame() {
   var selectedPiece = 0;
   var fromRow, fromCol, toRow, toCol
   var board = new Board();
+  turn = 0;
   pieceSelected = false;
   board.setUpBoard();
   board.draw();
-  turn = 0;
   grave = []
 }
 

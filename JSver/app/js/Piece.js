@@ -67,12 +67,11 @@ Piece.prototype.isValidMove = function(move) {
 
 var isCheck = function(move) {
   var board = new Board()
-  isCheck = false;
+  check = false;
   board.remember()
-  board.forceMove(move)
-
+    //board.forceMove(move)
   board.undo();
-  return isCheck
+  return check
 }
 
 Piece.prototype.getScore = function() {

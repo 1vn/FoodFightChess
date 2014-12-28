@@ -80,10 +80,6 @@ var Board = function() {
     return test;
   }
 
-  this.tester2 = function() {
-    return drawn;
-  }
-
   this.getBoard = function() {
     return grid;
   }

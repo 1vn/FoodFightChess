@@ -32,43 +32,52 @@ Pawn.prototype.getAllPossibleMoves = function() {
   if (this.colour == 0) {
     if (this.noOfMoves == 0) {
       two_step = new Move(this.row, this.col, this.row - 2, this.col);
-      allPossibleMoves.push(two_step)
+      if (!isCheck(two_step))
+        allPossibleMoves.push(two_step)
     }
     //Check for enemy on adjacent diagonal
     for (var d = -1; d <= 1; d += 2) {
       toSpace = board.getPiece(this.row - 1, this.col + d);
       if (toSpace != 0 && toSpace.colour != this.colour) {
         kill = new Move(this.row, this.col, this.row - 1, this.col + d);
-        allPossibleMoves.push(kill);
-        if (Piece.prototype.bTargets.indexOf(toSpace) <= -1)
-          Piece.prototype.bTargets.push(toSpace);
+        if (!isCheck(kill)) {
+          allPossibleMoves.push(kill);
+          if (Piece.prototype.bTargets.indexOf(toSpace) <= -1)
+            Piece.prototype.bTargets.push(toSpace);
+        }
       }
     }
     //Check for empty space in front
     inFront = board.getPiece(this.row - 1, this.col);
     if (inFront == 0)
-      allPossibleMoves.push(new Move(this.row, this.col, this.row - 1,
-        this.col))
+      front = new Move(this.row, this.col, this.row - 1, this.col)
+    if (!isCheck(front))
+      allPossibleMoves.push(front)
   } else if (this.colour != 0) { //Logic for black pieces (top)
     if (this.noOfMoves == 0) {
       two_step = new Move(this.row, this.col, this.row + 2, this.col);
-      allPossibleMoves.push(two_step);
+      if (!isCheck(two_step))
+        allPossibleMoves.push(two_step);
     }
     //Check for enemy on adjacent diagonal
     for (var d = -1; d <= 1; d += 2) {
       toSpace = board.getPiece(this.row + 1, this.col + d);
       if (toSpace != 0 && toSpace.colour != this.colour) {
         kill = new Move(this.row, this.col, this.row + 1, this.col + d);
-        allPossibleMoves.push(kill);
-        if (Piece.prototype.wTargets.indexOf(toSpace) <= -1)
-          Piece.prototype.wTargets.push(toSpace);
+        if (!isCheck(kill)) {
+          allPossibleMoves.push(kill);
+          if (Piece.prototype.wTargets.indexOf(toSpace) <= -1)
+            Piece.prototype.wTargets.push(toSpace);
+        }
       }
     }
     //Check for empty space in front
     inFront = board.getPiece(this.row + 1, this.col);
     if (inFront == 0)
-      allPossibleMoves.push(new Move(this.row, this.col, this.row + 1,
-        this.col))
+      front = new Move(this.row, this.col, this.row + 1,
+        this.col)
+    if (!isCheck(front))
+      allPossibleMoves.push(front)
   }
   this.allPossibleMoves = allPossibleMoves;
 }
