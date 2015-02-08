@@ -64,7 +64,7 @@ Piece.prototype.isValidMove = function(move) {
 		checkMove = this.allPossibleMoves[i];
 		if (checkMove.fromRow === move.fromRow && checkMove.fromCol ===
 			move.fromCol &&
-			checkMove.toRow === move.toRow && checkMove.toCol === move.toCol
+			checkMove.toRow === move.toRow && checkMove.toCol === move.toCol && isCheck()
 		) {
 			return true;
 		}
@@ -74,9 +74,9 @@ Piece.prototype.isValidMove = function(move) {
 var isCheck = function(move) {
 	var board = new Board()
 	check = false;
-	//board.remember()
+	board.remember()
 	//board.forceMove(move)
-	//board.undo();
+	board.undo();
 	return check
 }
 

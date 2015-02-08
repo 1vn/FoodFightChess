@@ -61,7 +61,7 @@ function placePiece(event) {
   if (pieceSelected) {
     console.log("placePiece intiated.");
     move = new Move(fromRow, fromCol, toRow, toCol);
-    console.log("Main created " + move.getInfo())
+    console.log("Move created " + move.getInfo())
     board = new Board();
     board.move(move, selectedPiece);
     var selectedDiv = document.getElementById(selectedPiece.getId())

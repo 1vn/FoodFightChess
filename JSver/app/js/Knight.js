@@ -7,6 +7,7 @@ Knight.prototype = Object.create(Piece.prototype);
 Knight.prototype.constructor = Knight;
 Knight.prototype.copy = function() {
   copy = new Knight(this.colour, this.row, this.col);
+  copy.allPossibleMoves = this.allPossibleMoves
   copy.removeDiv();
   return copy
 }

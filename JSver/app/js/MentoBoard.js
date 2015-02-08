@@ -2,6 +2,7 @@
   Momento for board. Flash copies every piece and space on a singleton board.
 */
 var MentoBoard = function() {
+    this.next = null
   board = new Board();
   this.grid = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],

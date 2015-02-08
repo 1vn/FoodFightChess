@@ -7,13 +7,24 @@ var MentoStack = function() {
     return arguments.callee._singletonInstance;
   arguments.callee._singletonInstance = this;
 
-  var stack = []
+  var top = null
 
   this.push = function(mento) {
     console.log("mento pushed.")
-    stack.push(mento)
+    if(top == null){
+        top = mento
+        return
+    }
+    else{
+        n = top
+        top = mento
+        mento.next = top
+    }
+
   }
   this.pop = function() {
-    return stack.pop()
+     n = top
+     top = top.next
+    return n
   }
 }

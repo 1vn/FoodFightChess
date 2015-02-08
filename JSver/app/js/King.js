@@ -11,7 +11,9 @@ King.prototype.getName = function() {
 
 King.prototype.copy = function() {
     copy = new King(this.colour, this.row, this.col)
-    return copy;
+    copy.allPossibleMoves = this.allPossibleMoves
+    copy.removeDiv()
+    return copy
 }
 
 King.prototype.updateKingPos = function() {

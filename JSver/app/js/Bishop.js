@@ -11,6 +11,7 @@ Bishop.prototype.getName = function() {
 
 Bishop.prototype.copy = function() {
   copy = new Bishop(this.colour, this.row, this.col);
+  copy.allPossibleMoves = this.allPossibleMoves
   copy.removeDiv();
   return copy;
 }
