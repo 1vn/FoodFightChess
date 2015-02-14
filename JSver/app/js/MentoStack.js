@@ -27,4 +27,8 @@ var MentoStack = function() {
      top = top.next
     return n
   }
+
+  this.isEmpty = function(){
+      return top == null
+  }
 }
