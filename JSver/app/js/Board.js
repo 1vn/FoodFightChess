@@ -101,6 +101,13 @@ var Board = function() {
         }
     }
 
+    this.getPieces = function(move) {
+        console.log(move.getInfo())
+        return [grid[move.fromRow][move.fromCol], grid[move.toRow][move
+            .toCol
+        ]]
+    }
+
     this.move = function(move, piece) {
         if (piece.isValidMove(move)) {
             grid[move.fromRow][move.fromCol].move(move);
@@ -109,8 +116,6 @@ var Board = function() {
         } else {
             grid[move.fromRow][move.fromCol].noMove();
         }
-        //this.remember();
-
     }
 
     /**
@@ -135,12 +140,15 @@ var Board = function() {
         }
     }
 
+    this.set = function(row, col, piece) {
+        grid[row][col] = piece
+    }
+
     this.updateMoves = function() {
         for (row = 1; row < 9; row++) {
             for (col = 1; col < 9; col++) {
                 if (grid[row][col] != 0) {
                     grid[row][col].getAllPossibleMoves();
-                    console.log("Updated moves for: " + grid[row][col].getName())
                 }
             }
         }
@@ -159,18 +167,10 @@ var Board = function() {
     /**
 	  Gets last state of the board
 	*/
-    this.undo = function(step) {
+    this.undo = function() {
         mStack = new MentoStack();
-        var s = step
-        while (s > 1)
-            mStack.pop();
         var mento = mStack.pop();
-        for (var row = 1; row < 9; row++)
-            for (var col = 1; col < 9; col++) {
-                space = mento.getPiece(row, col)
-                if (space != 0) {
-                    grid[row][col] = space.copy()
-                }
-            }
+        grid = mento.grid
+
     }
 }

@@ -3,32 +3,20 @@
   checking for checkmate.
 */
 var MentoStack = function() {
-  if (arguments.callee._singletonInstance) //Singleton block
-    return arguments.callee._singletonInstance;
-  arguments.callee._singletonInstance = this;
+    if (arguments.callee._singletonInstance) //Singleton block
+        return arguments.callee._singletonInstance;
+    arguments.callee._singletonInstance = this;
+    var stack = []
+    var top = null
 
-  var top = null
-
-  this.push = function(mento) {
-    console.log("mento pushed.")
-    if(top == null){
-        top = mento
-        return
+    this.push = function(mento) {
+        stack.push(mento)
     }
-    else{
-        n = top
-        top = mento
-        mento.next = top
+    this.pop = function() {
+        return stack.pop(mento)
     }
 
-  }
-  this.pop = function() {
-     n = top
-     top = top.next
-    return n
-  }
-
-  this.isEmpty = function(){
-      return top == null
-  }
+    this.isEmpty = function() {
+        return top == null
+    }
 }

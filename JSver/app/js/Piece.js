@@ -1,6 +1,7 @@
 var PIECES_NAMES = ['null', 'Pawn']; //debug
 var COLOUR_NAMES = ['white', 'black']; //debug
-function Piece(score, colour, row, col, no) {
+function Piece(score, colour, row, col) {
+	this.allPossibleMoves = []
 	this.score = score;
 	this.colour = colour;
 	this.row = row;
@@ -60,24 +61,55 @@ Piece.prototype.removeDiv = function() {
 }
 
 Piece.prototype.isValidMove = function(move) {
+	if (move.toRow == this.row && move.toCol == this.Col || this.allPossibleMoves
+		.length <=
+		0) {
+		this.noMove();
+		return;
+	}
+
 	for (var i = 0; i < this.allPossibleMoves.length; i++) {
 		checkMove = this.allPossibleMoves[i];
 		if (checkMove.fromRow === move.fromRow && checkMove.fromCol ===
 			move.fromCol &&
-			checkMove.toRow === move.toRow && checkMove.toCol === move.toCol && isCheck()
+			checkMove.toRow === move.toRow && checkMove.toCol === move.toCol &&
+			!isCheck(move, this.colour)
 		) {
 			return true;
 		}
 	}
 }
 
-var isCheck = function(move) {
+var isCheck = function(move, colour) {
 	var board = new Board()
-	check = false;
-	board.remember()
-	//board.forceMove(move)
-	board.undo();
-	return check
+	current = board.getBoard()
+	console.log(move.getInfo())
+	pieces = board.getPieces(move)
+	from = pieces[0]
+	to = pieces[1] == 0 ? 0 : pieces[1].copy()
+	console.log("from: " + from + " to: " + to)
+	console.log("Current board: " + board.getBoard())
+	from.move(move)
+	console.log(from.getRow(), from.getCol())
+	board.updateMoves()
+	if (colour == 0) {
+		for (var i = 0; i < Piece.prototype.wTargets.length; i++) {
+			if (Piece.prototype.wTargets[i].score == 200)
+				return true
+		}
+	} else {
+		for (var i = 0; i < Piece.prototype.bTargets.length; i++) {
+			if (Piece.prototype.bTargets[i].score == 200)
+				return true
+		}
+	}
+	console.log("There is no check")
+	back = new Move(move.toRow, move.toCol, move.fromRow, move.fromCol)
+	console.log(move.toRow, move.toCol)
+	console.log(from)
+	from.move(back)
+	board.set(move.toRow, move.toCol, to)
+	return false
 }
 
 Piece.prototype.getScore = function() {
@@ -101,13 +133,11 @@ Piece.prototype.getDiv = function() {
 }
 
 Piece.prototype.move = function(move) {
+	console.log("Moving " + this.score)
 	board = new Board();
-	if (move.toRow == this.row && move.toCol == this.Col) {
-		this.noMove();
-		return;
-	}
 	prey = board.getPiece(move.toRow, move.toCol);
-	if (prey != 0) {
+	if (prey != 0 && prey.colour != this.colour) {
+		console.log("Eating " + prey)
 		grave.push(prey);
 		prey.removeDiv();
 	}
