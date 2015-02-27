@@ -37,7 +37,7 @@ Piece.prototype.getScore = function() {
 Piece.prototype.generateId = function(rank, colour, row, col) {
 	this.idCode = "" +
 		rank + colour + row + col
-	console.log(this.idCode);
+	//console.log(this.idCode);
 }
 
 Piece.prototype.getId = function() {
@@ -92,13 +92,15 @@ var isCheck = function(move, colour) {
 	from.move(move)
 	console.log(from.getRow(), from.getCol())
 	board.updateMoves()
-	if (colour == 0) {
+	if (this.colour == 0) {
 		for (var i = 0; i < Piece.prototype.wTargets.length; i++) {
+			console.log("Looking at " + this.wTargets[i])
 			if (Piece.prototype.wTargets[i].score == 200)
 				return true
 		}
 	} else {
 		for (var i = 0; i < Piece.prototype.bTargets.length; i++) {
+			console.log("Looking at " + this.bTargets[i])
 			if (Piece.prototype.bTargets[i].score == 200)
 				return true
 		}
