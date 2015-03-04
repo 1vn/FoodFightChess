@@ -10,6 +10,8 @@ this.makeMove = function{
   return move
 }
 
+
+
 this.evaluateBoard = function(){
   board = new Board();
   score = 0
