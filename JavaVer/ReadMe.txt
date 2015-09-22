@@ -1,4 +1,4 @@
-Game by Ivan Zhang and Chaunk De Silva
+Game by Ivan Zhang
 Main code is in ChessGame.java
 Minimax algorithm with alpha beta pruning is in ComputerPlayer.java
 
